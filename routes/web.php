@@ -12,11 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('front');
-});
-
 Auth::routes();
 
 Route::prefix("admin")->namespace('Admin')->middleware('auth')->group(function() {
@@ -25,7 +20,7 @@ Route::prefix("admin")->namespace('Admin')->middleware('auth')->group(function()
     Route::resource('categories', 'CategoryController');
     Route::resource('tags', 'TagController');
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+//area pubblica front office
+Route::get("{any?}", function() {
+    return view("front");
+})->where("any", ".*");
