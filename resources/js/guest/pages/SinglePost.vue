@@ -11,15 +11,15 @@ export default {
     name:"SinglePost",
     data(){
         return{
-            post:{
+            post: {
 
             }
         }
     },
     creater(){
-        axios.get('/api/posts/${this.$route.params.slug}')
+        axios.get(`/api/posts/${this.$route.params.slug}`)
         .then((response) =>{
-            console.log(response.data);
+            this.post = response.data;
         });  
     }
 }
